@@ -26,5 +26,5 @@ class Publisher extends Model
 
     }
 
-    
+
 }
