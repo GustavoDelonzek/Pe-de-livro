@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
-    public function __construct(public AuthorService $service){
+    public function __construct(public AuthorService $authorService){
         //
     }
 
@@ -17,7 +17,9 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        return $this->service->getAll();
+        return response()->json([
+            'data' => $this->authorService->getAll()
+        ]);
     }
 
 
