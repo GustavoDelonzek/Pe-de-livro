@@ -29,7 +29,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: codeacademy_laravel_vue
+      MYSQL_DATABASE: livraria
       MYSQL_PASSWORD: root
     ports:
       - "3310:3306"
