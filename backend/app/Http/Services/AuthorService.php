@@ -28,4 +28,16 @@ class AuthorService{
         return $this->authorRepository->createAuthor($author);
     }
 
+    public function showAuthor(int $id){
+        $authorQuery =  $this->authorRepository->getAuthorById($id);
+        
+        if(!$authorQuery){
+            throw new Exception('Could not find author');
+        }
+
+        $author = $this->loadRelationships($authorQuery)->first();
+
+        return $author;
+    }
+
 }

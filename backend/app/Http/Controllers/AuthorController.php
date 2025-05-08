@@ -40,9 +40,13 @@ class AuthorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Author $author)
+    public function show(int $author)
     {
-        //
+        $author = $this->authorService->showAuthor($author);
+
+        return response()->json([
+            'data' => $author
+        ], 200);
     }
 
 
