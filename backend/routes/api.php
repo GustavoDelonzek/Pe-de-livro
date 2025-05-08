@@ -26,4 +26,7 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/authors', [AuthorController::class, 'index']);
 
+Route::middleware('auth:api')->group(function(){
+    Route::post('/authors', [AuthorController::class, 'store']);
+});
 

@@ -11,17 +11,21 @@ class AuthorService{
 
     private $relations = ['books'];
 
-    public function __construct(public AuthorRepository $repository){
+    public function __construct(public AuthorRepository $authorRepository){
     }
 
     public function getAll(){
-        $authorsQuery = $this->repository->getAll();
+        $authorsQuery = $this->authorRepository->getAll();
         if(!$authorsQuery){
             throw new Exception('Could not find authors');
         }
         $authors = $this->loadRelationships($authorsQuery)->get();
 
         return $authors;
+    }
+
+    public function createAuthor(array $author){
+        return $this->authorRepository->createAuthor($author);
     }
 
 }
