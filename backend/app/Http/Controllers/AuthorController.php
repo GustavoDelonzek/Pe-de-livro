@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAuthorRequest;
+use App\Http\Requests\UpdateAuthorRequest;
 use App\Http\Services\AuthorService;
 use App\Models\Author;
 use Illuminate\Http\Request;
@@ -53,9 +54,14 @@ class AuthorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Author $author)
+    public function update(UpdateAuthorRequest $request, int $author)
     {
-        //
+        $validated = $request->validated();
+        $author = $this->authorService->updateAuthor($author, $validated);
+
+        return response()->json([
+            'data' => $author
+        ], 200);
     }
 
     /**

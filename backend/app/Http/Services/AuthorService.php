@@ -30,12 +30,24 @@ class AuthorService{
 
     public function showAuthor(int $id){
         $authorQuery =  $this->authorRepository->getAuthorById($id);
-        
+
         if(!$authorQuery){
             throw new Exception('Could not find author');
         }
 
         $author = $this->loadRelationships($authorQuery)->first();
+
+        return $author;
+    }
+
+    public function updateAuthor(int $id, array $author){
+        $authorQuery =  $this->authorRepository->getAuthorById($id);
+
+        if(!$authorQuery){
+            throw new Exception('Could not find author');
+        }
+
+        $author = $this->authorRepository->updateAuthor($author, $id);
 
         return $author;
     }
