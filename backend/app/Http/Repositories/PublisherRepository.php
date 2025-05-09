@@ -8,4 +8,9 @@ class PublisherRepository{
     public function getAll(){
         return Publisher::query();
     }
+
+    public function createPublisher(array $publisher){
+        return Publisher::create($publisher);
+    }
+
 }

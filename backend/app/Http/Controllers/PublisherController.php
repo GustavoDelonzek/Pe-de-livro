@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePublisherRequest;
 use App\Http\Services\PublisherService;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
@@ -28,9 +29,15 @@ class PublisherController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePublisherRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $publisher = $this->publisherService->createPublisher($validated);
+
+        return response()->json([
+            'data' => $publisher
+        ], 201);
     }
 
     /**

@@ -25,4 +25,9 @@ class PublisherService{
         return $publishers;
     }
 
+
+    public function createPublisher(array $publisher){
+        return $this->repository->createPublisher($publisher);
+    }
+
 }
