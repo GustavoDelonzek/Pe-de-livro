@@ -43,9 +43,13 @@ class PublisherController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Publisher $publisher)
+    public function show(int $publisher)
     {
-        //
+        $publisher = $this->publisherService->showPublisher($publisher);
+
+        return response()->json([
+            'data' => $publisher
+        ], 200);
     }
 
 

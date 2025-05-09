@@ -16,7 +16,7 @@ class PublisherService{
     public function getAll(){
         $publishersQuery = $this->repository->getAll();
 
-        if(!$publishersQuery){
+        if(!$publishersQuery || !$publishersQuery->exists()){
             throw new Exception('Could not find publishers');
         }
 
@@ -28,6 +28,18 @@ class PublisherService{
 
     public function createPublisher(array $publisher){
         return $this->repository->createPublisher($publisher);
+    }
+
+    public function showPublisher(int $id){
+        $publisherQuery =  $this->repository->getPublisherById($id);
+
+        if(!$publisherQuery || !$publisherQuery->exists()){
+            throw new Exception('Could not find publisher');
+        }
+
+        $publisher = $this->loadRelationships($publisherQuery)->first();
+
+        return $publisher;
     }
 
 }

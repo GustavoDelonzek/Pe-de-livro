@@ -13,4 +13,8 @@ class PublisherRepository{
         return Publisher::create($publisher);
     }
 
+    public function getPublisherById(int $id){
+        return Publisher::where('id', $id);
+    }
+
 }
