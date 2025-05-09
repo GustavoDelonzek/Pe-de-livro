@@ -31,7 +31,7 @@ class AuthorService{
     public function showAuthor(int $id){
         $authorQuery =  $this->authorRepository->getAuthorById($id);
 
-        if(!$authorQuery){
+        if(!$authorQuery || !$authorQuery->exists()){
             throw new Exception('Could not find author');
         }
 
@@ -43,7 +43,7 @@ class AuthorService{
     public function updateAuthor(int $id, array $author){
         $authorQuery =  $this->authorRepository->getAuthorById($id);
 
-        if(!$authorQuery){
+        if(!$authorQuery || !$authorQuery->exists()){
             throw new Exception('Could not find author');
         }
 

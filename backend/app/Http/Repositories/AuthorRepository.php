@@ -14,7 +14,7 @@ class AuthorRepository{
     }
 
     public function getAuthorById(int $id){
-        return Author::where('id', $id)->first();
+        return Author::where('id', $id);
     }
 
     public function updateAuthor(array $author, int $id){
