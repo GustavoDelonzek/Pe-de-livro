@@ -71,8 +71,12 @@ class PublisherController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Publisher $publisher)
+    public function destroy(int $publisher)
     {
-        //
+        $publisher = $this->publisherService->deletePublisher($publisher);
+
+        return response()->json([
+            'message' => 'Publisher deleted successfully'
+        ], 200);
     }
 }

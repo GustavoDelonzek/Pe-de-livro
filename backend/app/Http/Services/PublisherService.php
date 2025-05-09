@@ -52,4 +52,12 @@ class PublisherService{
         return $publisher;
     }
 
+    public function deletePublisher(int $id){
+        $deleted = $this->repository->deletePublisher($id);
+        if(!$deleted){
+            throw new Exception('Could not delete publisher');
+        }
+        return $deleted;
+    }
+
 }

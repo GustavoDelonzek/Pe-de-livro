@@ -21,4 +21,8 @@ class PublisherRepository{
         return Publisher::where('id', $id)->update($publisher);
     }
 
+    public function deletePublisher(int $id){
+        return Publisher::where('id', $id)->delete();
+    }
+
 }
