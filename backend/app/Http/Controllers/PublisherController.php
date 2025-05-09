@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePublisherRequest;
+use App\Http\Requests\UpdatePublisherRequest;
 use App\Http\Services\PublisherService;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
@@ -57,9 +58,14 @@ class PublisherController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Publisher $publisher)
+    public function update(UpdatePublisherRequest $request, int $publisher)
     {
-        //
+        $validated = $request->validated();
+        $publisher = $this->publisherService->updatePublisher($publisher, $validated);
+
+        return response()->json([
+            'message' => 'Publisher updated successfully'
+        ], 200);
     }
 
     /**

@@ -17,4 +17,8 @@ class PublisherRepository{
         return Publisher::where('id', $id);
     }
 
+    public function updatePublisher(array $publisher, int $id){
+        return Publisher::where('id', $id)->update($publisher);
+    }
+
 }

@@ -42,4 +42,14 @@ class PublisherService{
         return $publisher;
     }
 
+    public function updatePublisher(int $id, array $publisherData){
+        $publisher = $this->repository->updatePublisher($publisherData, $id);
+
+        if(!$publisher || empty($publisherData)){
+            throw new Exception('Could not update publisher');
+        }
+
+        return $publisher;
+    }
+
 }
