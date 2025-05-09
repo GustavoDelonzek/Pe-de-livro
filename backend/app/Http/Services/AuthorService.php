@@ -40,15 +40,14 @@ class AuthorService{
         return $author;
     }
 
-    public function updateAuthor(int $id, array $author){
-        $authorQuery =  $this->authorRepository->getAuthorById($id);
+    public function updateAuthor(int $id, array $authorData){
 
-        if(!$authorQuery || !$authorQuery->exists()){
-            throw new Exception('Could not find author');
+        $author = $this->authorRepository->updateAuthor($authorData, $id);
+
+        if(empty($authorData) || !$author){
+            throw new Exception('Could not update author');
         }
-
-        $author = $this->authorRepository->updateAuthor($author, $id);
-
+        
         return $author;
     }
 
