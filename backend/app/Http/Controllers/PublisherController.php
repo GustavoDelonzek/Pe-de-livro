@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PublisherController extends Controller
 {
 
-    public function __construct(public PublisherService $service){
+    public function __construct(public PublisherService $publisherService){
         //
     }
     /**
@@ -17,7 +17,11 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        return $this->service->getAll();
+        $publishers = $this->publisherService->getAll();
+
+        return response()->json([
+            'data' => $publishers
+        ]);
     }
 
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\PublisherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,7 @@ Route::post('/authors', [AuthorController::class, 'store']);
 Route::put('/authors/{author}', [AuthorController::class, 'update']);
 Route::delete('/authors/{author}', [AuthorController::class, 'destroy']);
 
-
+Route::get('/publishers', [PublisherController::class, 'index']);   
 
 
 Route::middleware('auth:api')->group(function(){

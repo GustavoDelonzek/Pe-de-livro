@@ -6,6 +6,6 @@ use App\Models\Publisher;
 
 class PublisherRepository{
     public function getAll(){
-        return Publisher::all();
+        return Publisher::query();
     }
 }
