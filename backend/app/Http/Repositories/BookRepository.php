@@ -6,6 +6,10 @@ use App\Models\Book;
 
 class BookRepository{
     public function getAll(){
-        return Book::all();
+        return Book::query();
+    }
+
+    public function getBookById(int $id){
+        return Book::where('id', $id);
     }
 }

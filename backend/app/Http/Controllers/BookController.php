@@ -17,7 +17,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        return $this->service->getAll();
+        return response()->json([
+            "data" => $this->service->getAll()
+        ]);
     }
 
 
@@ -32,9 +34,13 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show(int $book)
     {
-        //
+        $book = $this->service->showBook($book);
+
+        return response()->json([
+            "data" => $book
+        ], 200);
     }
 
 
