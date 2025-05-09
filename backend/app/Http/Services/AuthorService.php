@@ -52,4 +52,8 @@ class AuthorService{
         return $author;
     }
 
+    public function deleteAuthor(int $id){
+        return $this->authorRepository->deleteAuthor($id);
+    }
+
 }

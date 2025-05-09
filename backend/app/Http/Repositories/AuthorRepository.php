@@ -21,4 +21,8 @@ class AuthorRepository{
         return Author::where('id', $id)->update($author);
     }
 
+    public function deleteAuthor(int $id){
+        return Author::where('id', $id)->delete();
+    }
+
 }

@@ -26,8 +26,14 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/authors', [AuthorController::class, 'index']);
 Route::get('/authors/{author}', [AuthorController::class, 'show']);
+Route::post('/authors', [AuthorController::class, 'store']);
+Route::put('/authors/{author}', [AuthorController::class, 'update']);
+Route::delete('/authors/{author}', [AuthorController::class, 'destroy']);
+
+
+
 
 Route::middleware('auth:api')->group(function(){
-    Route::post('/authors', [AuthorController::class, 'store']);
+
 });
 

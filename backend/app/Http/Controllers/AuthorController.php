@@ -60,15 +60,25 @@ class AuthorController extends Controller
         $author = $this->authorService->updateAuthor($author, $validated);
 
         return response()->json([
-            'data' => $author
+            'message' => 'Author updated successfully'
         ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Author $author)
+    public function destroy(int $author)
     {
-        //
+        $author = $this->authorService->deleteAuthor($author);
+
+        if(!$author){
+            return response()->json([
+                'message' => 'Author not found'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Author deleted successfully'
+        ], 200);
     }
 }
