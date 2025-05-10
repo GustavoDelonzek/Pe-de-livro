@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBookRequest;
 use App\Http\Services\BookService;
 use App\Models\Book;
 use Illuminate\Http\Request;
@@ -26,9 +27,14 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $book = $this->service->createBook($validated);
+
+        return response()->json([
+            "data" => $book
+        ], 201);
     }
 
     /**

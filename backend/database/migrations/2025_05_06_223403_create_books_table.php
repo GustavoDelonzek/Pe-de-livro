@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->foreignId('author_id')->constrained()->onDelete('cascade');
             $table->foreignId('publisher_id')->constrained()->onDelete('cascade');
-            $table->date('published_year');
+            $table->integer('published_year');
             $table->decimal('price', 8, 2);
             $table->integer('stock')->default(0);
             $table->string('img_url')->nullable();

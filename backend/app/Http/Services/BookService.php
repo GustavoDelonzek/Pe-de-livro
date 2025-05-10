@@ -35,5 +35,9 @@ class BookService{
         return $book;
     }
 
+    public function createBook(array $book){
+        return $this->repository->createBook($book);
+    }
+
 
 }

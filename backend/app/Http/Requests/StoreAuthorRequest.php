@@ -26,6 +26,7 @@ class StoreAuthorRequest extends FormRequest
             'biography' => 'sometimes|string|min:3|max:500',
             'birth' => 'required|date',
             'nationality' => 'required|string|min:2|max:50',
+            'img_url' => 'sometimes|url'
         ];
     }
 }

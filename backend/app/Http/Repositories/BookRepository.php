@@ -12,4 +12,8 @@ class BookRepository{
     public function getBookById(int $id){
         return Book::where('id', $id);
     }
+
+    public function createBook(array $book){
+        return Book::create($book);
+    }
 }
