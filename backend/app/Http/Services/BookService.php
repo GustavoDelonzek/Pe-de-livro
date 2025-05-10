@@ -49,4 +49,14 @@ class BookService{
         return $book;
     }
 
+    public function deleteBook(int $id){
+        $deleted =$this->repository->deleteBook($id);
+
+        if(!$deleted){
+            throw new Exception('Could not delete book');
+        }
+
+        return $deleted;
+    }
+
 }

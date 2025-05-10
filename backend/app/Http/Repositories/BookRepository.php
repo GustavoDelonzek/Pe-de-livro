@@ -20,4 +20,8 @@ class BookRepository{
     public function updateBook(array $book, int $id){
         return Book::where('id', $id)->update($book);
     }
+
+    public function deleteBook(int $id){
+        return Book::where('id', $id)->delete();
+    }
 }
