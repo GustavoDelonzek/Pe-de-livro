@@ -16,4 +16,8 @@ class BookRepository{
     public function createBook(array $book){
         return Book::create($book);
     }
+
+    public function updateBook(array $book, int $id){
+        return Book::where('id', $id)->update($book);
+    }
 }

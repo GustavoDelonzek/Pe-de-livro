@@ -39,5 +39,14 @@ class BookService{
         return $this->repository->createBook($book);
     }
 
+    public function updateBook(int $id, array $bookData){
+        $book = $this->repository->updateBook($bookData, $id);
+
+        if(!$book || empty($bookData)){
+            throw new Exception('Could not update book');
+        }
+
+        return $book;
+    }
 
 }
