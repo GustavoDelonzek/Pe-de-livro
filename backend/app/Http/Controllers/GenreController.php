@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreGenreRequest;
 use App\Http\Services\GenreService;
 use App\Models\Genre;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller
@@ -20,20 +22,19 @@ class GenreController extends Controller
         return $this->service->getAll();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreGenreRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $genre = $this->service->createGenre($validated);
+
+        return response()->json([
+            'message' => 'Genre created successfully'
+        ], 201);
     }
 
     /**
@@ -48,13 +49,6 @@ class GenreController extends Controller
         ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Genre $genre)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

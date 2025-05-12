@@ -23,6 +23,10 @@ class GenreService{
         return $genres;
     }
 
+    public function createGenre(array $genre){
+        return $this->repository->createGenre($genre);
+    }
+
     public function showGenre(int $id){
         $genreQuery =  $this->repository->getGenreById($id);
 
