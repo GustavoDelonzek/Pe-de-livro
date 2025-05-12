@@ -39,9 +39,13 @@ class GenreController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Genre $genre)
+    public function show(int $genre)
     {
-        //
+        $genre = $this->service->showGenre($genre);
+
+        return response()->json([
+            'data' => $genre
+        ], 200);
     }
 
     /**

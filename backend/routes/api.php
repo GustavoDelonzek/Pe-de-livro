@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\PublisherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,7 @@ Route::put('/publishers/{publisher}', [PublisherController::class, 'update']);
 Route::delete('/publishers/{publisher}', [PublisherController::class, 'destroy']);
 
 Route::apiResource('books', BookController::class);
+Route::apiResource('genres', GenreController::class);
 
 Route::middleware('auth:api')->group(function(){
 
