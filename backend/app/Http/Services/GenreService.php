@@ -39,5 +39,25 @@ class GenreService{
         return $genre;
     }
 
+    public function updateGenre(int $id, array $genreData){
+        $genre = $this->repository->updateGenre($genreData, $id);
+
+        if(!$genre || empty($genreData)){
+            throw new Exception('Could not update genre');
+        }
+
+        return $genre;
+    }
+
+    public function deleteGenre(int $id){
+        $deleted = $this->repository->deleteGenre($id);
+
+        if(!$deleted){
+            throw new Exception('Could not delete genre');
+        }
+
+        return $deleted;
+    }
+
 
 }

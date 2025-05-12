@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGenreRequest;
+use App\Http\Requests\UpdateGenreRequest;
 use App\Http\Services\GenreService;
 use App\Models\Genre;
 use Illuminate\Contracts\Cache\Store;
@@ -53,16 +54,25 @@ class GenreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Genre $genre)
+    public function update(UpdateGenreRequest $request, int $genre)
     {
-        //
+        $validated = $request->validated();
+        $genre = $this->service->updateGenre($genre, $validated);
+
+        return response()->json([
+            'message' => 'Genre updated successfully'
+        ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Genre $genre)
+    public function destroy(int $genre)
     {
-        //
+        $genre = $this->service->deleteGenre($genre);
+
+        return response()->json([
+            'message' => 'Genre deleted successfully'
+        ], 200);
     }
 }
