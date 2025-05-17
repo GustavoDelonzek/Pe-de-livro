@@ -20,7 +20,9 @@ class GenreController extends Controller
      */
     public function index()
     {
-        return $this->service->getAll();
+        return response()->json([
+            'data' => $this->service->getAll()
+        ]);
     }
 
 
