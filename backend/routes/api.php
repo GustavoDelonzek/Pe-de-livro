@@ -41,12 +41,17 @@ Route::get('/genres', [GenreController::class, 'index']);
 Route::get('/genres/{genre}', [GenreController::class, 'show']);
 
 Route::middleware('auth:api')->group(function(){
+    
+    Route::post('/logout', function () {
+        return response()->json(['message' => 'Logged out'])
+            ->withoutCookie('token');
+    });
 
     Route::apiResource('reviews', ReviewController::class)->except(['show', 'index']);
     Route::get('users/me', [UserController::class, 'showMe']);
     Route::put('users/me', [UserController::class, 'updateMe']);
     Route::delete('users/me', [UserController::class, 'destroyMe']);
-    Route::post('users/genres', [UserController::class, 'storeGenrePreference']);   
+    Route::post('users/genres', [UserController::class, 'storeGenrePreference']);
 
     Route::prefix('admin')->middleware('checkRole:admin')->group(function(){
         Route::post('/authors', [AuthorController::class, 'store']);

@@ -20,7 +20,7 @@ class AuthController extends Controller
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
-        return response()->json(['token' => $token]);
+        return response()->json(['token' => $token])->cookie('token', $token, 60 * 24, '/',null, true, true, false, 'Lax');
     }
 
     public function register(RegisterRequest $request){
