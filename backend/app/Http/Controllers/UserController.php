@@ -40,7 +40,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function showMe()
     {
         return response()->json([
             'data' => $this->userService->showMe(Auth::user())
@@ -50,10 +50,10 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request)
+    public function updateMe(UpdateUserRequest $request)
     {
         $validated = $request->validated();
-        
+
         $this->userService->updateUser(Auth::user(), $validated);
 
         return response()->json([
@@ -64,7 +64,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy()
+    public function destroyMe()
     {
         $this->userService->deleteUser(Auth::user());
 
