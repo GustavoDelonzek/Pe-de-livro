@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Http\Repositories\BookRepository;
 use App\Http\Traits\CanLoadRelationships;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class BookService{
     use CanLoadRelationships;
@@ -36,17 +37,39 @@ class BookService{
     }
 
     public function createBook(array $book){
-        return $this->repository->createBook($book);
+        DB::beginTransaction();
+        try{
+            $bookCreated = $this->repository->createBook($book);
+            $bookCreated->genres()->sync($book['genres']);
+            DB::commit();
+            return $bookCreated;
+        } catch (Exception $e){
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function updateBook(int $id, array $bookData){
-        $book = $this->repository->updateBook($bookData, $id);
 
-        if(!$book || empty($bookData)){
-            throw new Exception('Could not update book');
+        DB::beginTransaction();
+        try{
+            $book = $this->repository->updateBook($bookData, $id);
+
+            if(!$book || empty($bookData)){
+                throw new Exception('Could not update book');
+            }
+
+            if(array_key_exists('genres', $bookData)){
+                $book->genres()->sync($bookData['genres']);
+            }
+
+            DB::commit();
+            return $book;
+        } catch (Exception $e){
+            DB::rollBack();
+            throw $e;
         }
 
-        return $book;
     }
 
     public function deleteBook(int $id){

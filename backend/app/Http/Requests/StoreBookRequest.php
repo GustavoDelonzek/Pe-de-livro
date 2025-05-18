@@ -28,7 +28,9 @@ class StoreBookRequest extends FormRequest
             'published_year' => 'required|integer|regex:/^\d{1,4}$/',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
-            'img_url' => 'sometimes|url'
+            'img_url' => 'sometimes|url',
+            'genres' => 'required|array|min:1|max:3',
+            'genres.*' => 'integer|exists:genres,id'
         ];
     }
 }

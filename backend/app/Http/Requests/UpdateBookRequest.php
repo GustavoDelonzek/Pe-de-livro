@@ -28,7 +28,9 @@ class UpdateBookRequest extends FormRequest
             'published_year' => 'sometimes|integer|regex:/^\d{1,4}$/',
             'price' => 'sometimes|numeric',
             'stock' => 'sometimes|integer',
-            'img_url' => 'sometimes|url'
+            'img_url' => 'sometimes|url',
+            'genres' => 'sometimes|array|min:1|max:3',
+            'genres.*' => 'integer|exists:genres,id'
         ];
     }
 }
