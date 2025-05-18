@@ -20,7 +20,7 @@
   
         
   
-        <RouterLink  class="text-lg hover:text-gray-500 font-semibold">Login</RouterLink>
+        <RouterLink to="/login" class="text-lg hover:text-gray-500 font-semibold">Login</RouterLink>
       </div>
   
       <div class="md:hidden flex items-center space-x-3">
