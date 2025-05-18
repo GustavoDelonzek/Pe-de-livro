@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,7 @@ Route::delete('/publishers/{publisher}', [PublisherController::class, 'destroy']
 
 Route::apiResource('books', BookController::class);
 Route::apiResource('genres', GenreController::class);
+Route::apiResource('reviews', ReviewController::class);
 
 Route::middleware('auth:api')->group(function(){
 

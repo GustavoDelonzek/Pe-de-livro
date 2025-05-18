@@ -60,6 +60,7 @@ class ReviewController extends Controller
     public function update(UpdateBookRequest $request, int $review)
     {
         $validated = $request->validated();
+        
         $review = $this->service->updateReview($review, $validated, Auth::user());
 
         return response()->json([
