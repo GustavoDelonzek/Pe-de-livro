@@ -5,6 +5,14 @@ export const useUserStore = defineStore('userStore', {
         user: null,
         isAuthenticated: false,
     }),
+    getters: {
+        getUser(state){
+            return state.user;
+        },
+        isAuthenticated(state){
+            return state.isAuthenticated;
+        }
+    },
     actions: {
         setUser(user){
             this.user = user;
